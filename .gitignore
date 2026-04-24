@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.gstack/
+
+# NCERT source PDFs (large files, reference only)
+NCERT-Math-8th/

@@ -1,26 +1,102 @@
 @import "tailwindcss";
+@import "katex/dist/katex.min.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Surfaces */
+  --bg:              #FAFAF8;
+  --bg-card:         #FFFFFF;
+  --bg-sidebar:      #F2F2F0;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Near-black — primary UI accent */
+  --accent:          #1C1C1A;
+  --accent-light:    #F2F2F0;
+  --accent-border:   #C4C4BF;
+  --accent-dark:     #000000;
+  --accent-shadow:   #000000;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Semantic green — open lockers, correct quiz answers, interactive content */
+  --green:           #5F8A6A;
+  --green-light:     #EFF5F1;
+  --green-border:    #A8CAB0;
+  --green-dark:      #2A4E33;
+
+  /* Semantic: yellow (in-progress / toggled) */
+  --yellow:          #D97706;
+  --yellow-light:    #FEF3C7;
+  --yellow-border:   #FCD34D;
+
+  /* Semantic: red (wrong answer / error) */
+  --red:             #DC2626;
+  --red-light:       #FEF2F2;
+  --red-border:      #FECACA;
+  --red-dark:        #991B1B;
+
+  /* Typography */
+  --text:            #1C1C1A;
+  --text-muted:      #8F8F8A;
+  --text-light:      #C4C4BF;
+
+  /* Structure */
+  --border:          #E6E6E2;
+  --border-strong:   #C4C4BF;
+  --shadow:          0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings use Outfit */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), 'Outfit', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Clicky primary button — sage green with 3D bottom shadow */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-family: var(--font-display), 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1.5px solid var(--accent-dark);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 3px 0 0 var(--accent-shadow);
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease, background 120ms ease;
+  user-select: none;
+}
+.btn-primary:hover  { background: var(--accent-dark); }
+.btn-primary:active { transform: translateY(2px); box-shadow: none; }
+
+/* Ghost button — white with grey shadow */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-family: var(--font-display), 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-strong);
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 3px 0 0 var(--border-strong);
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  user-select: none;
+}
+.btn-ghost:active { transform: translateY(2px); box-shadow: none; }
+
+/* KaTeX display tweak */
+.katex-display {
+  margin: 0.5rem 0;
 }
