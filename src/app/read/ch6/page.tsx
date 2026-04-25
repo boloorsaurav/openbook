@@ -62,13 +62,34 @@ export default function Chapter6Page() {
               The <strong>distributive property</strong> of multiplication over addition — a(b + c) = ab + ac — is the backbone of all algebraic expansion. Brahmagupta called it <em>khaṇḍa-guṇanam</em> (multiplication by parts). Think of it geometrically: a rectangle of width a and height (b + c) has exactly the same area as two smaller rectangles, one of width a and height b, and another of width a and height c.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              From the distributive property, a cascade of useful identities follows. If one factor in a product ab increases by 1, the product increases by a: a(b+1) = ab + a. If <em>both</em> factors increase by 1, the product increases by a + b + 1: (a+1)(b+1) = ab + a + b + 1. The general rule: (a + m)(b + n) = ab + an + bm + mn — the product of each term in the first factor with each term in the second. This is the foundation for all binomial expansion.
+              From the distributive property, a cascade of useful identities follows. If one factor increases by 1, the product increases by a. If <em>both</em> factors increase by 1, the product increases by a + b + 1. The general rule covers any shifts m and n:
             </p>
+
+            {/* Product change rules — visual break in the paragraph run */}
+            <div className="space-y-1.5 mb-4">
+              {[
+                "a(b + 1) = ab + a",
+                "(a + 1)(b + 1) = ab + a + b + 1",
+                "(a + m)(b + n) = ab + an + bm + mn",
+              ].map((line) => (
+                <p key={line} className="font-mono text-sm px-4 py-2.5 rounded-lg"
+                  style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
+                  {line}
+                </p>
+              ))}
+            </div>
+
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
               An <strong>identity</strong> is a mathematical equation that holds for all values of its variables. Unlike a specific equation (which is true for certain values), an identity is universally true. The distributive property itself is an identity: no matter what numbers you substitute for a, b, and c, a(b+c) always equals ab + ac.
             </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              A fast-multiplication trick: multiplying a number by 11 is the same as writing the number twice — once shifted one decimal place. 3874 × 11 = 38740 + 3874 = 42614. This works because 11 = 10 + 1 and the distributive property gives 3874 × (10+1) = 38740 + 3874.
+            <p className="leading-relaxed mb-2" style={{ color: "var(--text-muted)", fontSize: 15 }}>
+              A fast-multiplication trick: multiplying a number by 11 is the same as writing the number twice — once shifted one decimal place. This works because 11 = 10 + 1:
+            </p>
+
+            {/* ×11 trick — shown as a formula block */}
+            <p className="leading-relaxed mb-4 font-mono text-sm px-4 py-2.5 rounded-lg"
+              style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
+              3874 × 11 = 3874 × (10 + 1) = 38740 + 3874 = <strong>42614</strong>
             </p>
 
             <CalloutCard title="Distributive Property">
