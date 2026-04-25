@@ -59,17 +59,19 @@ export default function RomanConverter() {
 
       {/* Step breakdown */}
       {steps.length > 0 && (
-        <div className="space-y-1.5">
+        <div>
           <p className="text-[10px] font-bold uppercase tracking-wider mb-2"
             style={{ color: "var(--text-muted)" }}>How it's built</p>
-          {steps.map((s, i) => (
-            <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded"
-              style={{ background: "var(--bg-sidebar)", border: "1px solid var(--border)" }}>
-              <span className="text-[10px] font-bold w-4 text-center"
-                style={{ color: "var(--text-muted)" }}>{i + 1}</span>
-              <span className="text-xs" style={{ color: "var(--text)" }}>{s}</span>
-            </div>
-          ))}
+          <div className="space-y-1.5 overflow-y-auto" style={{ maxHeight: "12rem" }}>
+            {steps.map((s, i) => (
+              <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded"
+                style={{ background: "var(--bg-sidebar)", border: "1px solid var(--border)" }}>
+                <span className="text-[10px] font-bold w-4 text-center"
+                  style={{ color: "var(--text-muted)" }}>{i + 1}</span>
+                <span className="text-xs" style={{ color: "var(--text)" }}>{s}</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
