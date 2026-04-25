@@ -173,9 +173,31 @@ export default function Chapter3Page() {
               Zero is indispensable in a place value system. Without it, 302 and 32 would look identical if the blank space were left empty. Using 0 as a digit in every position makes every number unambiguous.
             </CalloutCard>
 
-            <CalloutCard title="Evolution of Number Representation">
-              <strong>1.</strong> Count using one-to-one mapping. <strong>2.</strong> Group into landmark numbers. <strong>3.</strong> Choose powers of a base as landmarks. <strong>4.</strong> Use position to denote the landmark (place value). <strong>5.</strong> Use 0 as a positional digit and as a number in its own right.
-            </CalloutCard>
+            {/* Evolution of number representation — 5-step progression */}
+            <div className="mt-4">
+              <p className="text-[10px] font-bold uppercase tracking-wider mb-3"
+                style={{ color: "var(--text-muted)", letterSpacing: "0.1em" }}>
+                Evolution of number representation
+              </p>
+              <div className="space-y-2">
+                {[
+                  "Count using one-to-one mapping",
+                  "Group into landmark numbers",
+                  "Choose powers of a base as landmarks",
+                  "Use position to denote the landmark (place value)",
+                  "Use 0 as a positional digit and as a number in its own right",
+                ].map((step, i) => (
+                  <div key={i} className="flex items-start gap-3 px-3 py-2.5 rounded-lg"
+                    style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)" }}>
+                    <span className="text-sm font-extrabold shrink-0 mt-0.5 w-5 text-center"
+                      style={{ color: "var(--accent)", fontFamily: "var(--font-display)" }}>
+                      {i + 1}
+                    </span>
+                    <span className="text-sm" style={{ color: "var(--text)" }}>{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
 
           {/* ── QUIZ ── */}
