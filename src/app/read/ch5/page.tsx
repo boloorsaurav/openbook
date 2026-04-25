@@ -90,16 +90,45 @@ export default function Chapter5Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              Divisibility has precise, provable rules. Some statements about it are <strong>always true</strong>, some are <strong>sometimes true</strong>, and some are <strong>never true</strong>.
+              Divisibility has precise, provable rules. Some statements are <strong>always true</strong> (no exceptions), some are <strong>sometimes true</strong> (depends on the specific numbers), and some are <strong>never true</strong>.
             </p>
-            <ul className="mb-4 space-y-2 pl-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              <li>• <strong>Always:</strong> If a divides M and a divides N, then a divides M+N and M−N. (Write M = a·p and N = a·q; then M+N = a(p+q).)</li>
-              <li>• <strong>Always:</strong> If A is divisible by k, then all multiples of A are divisible by k.</li>
-              <li>• <strong>Always:</strong> If A is divisible by k, then A is divisible by every factor of k. (So divisible by 12 → divisible by 1, 2, 3, 4, 6, 12.)</li>
-              <li>• <strong>Always:</strong> If A is divisible by both k and m, then A is divisible by the LCM of k and m. (Divisible by 9 and 4 → divisible by 36, since gcd(9,4)=1.)</li>
-              <li>• <strong>Sometimes:</strong> Divisible by 6 and 4 → divisible by 24? Not always. 12 is divisible by both but not by 24. The guarantee is only the LCM(6,4)=12.</li>
-              <li>• <strong>Never:</strong> The sum of an odd and an even number is always odd — never a multiple of 6, which must be even.</li>
-            </ul>
+
+            {/* Always / Sometimes / Never — three visual blocks */}
+            <div className="space-y-3 mb-4">
+              {/* Always */}
+              <div className="rounded-lg overflow-hidden border" style={{ borderColor: "var(--green-border)" }}>
+                <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: "var(--green-light)", color: "var(--green-dark)" }}>
+                  Always true
+                </div>
+                <ul className="px-4 py-3 space-y-1.5" style={{ fontSize: 14, color: "var(--text-muted)" }}>
+                  <li>If a divides M and a divides N → a divides M+N and M−N</li>
+                  <li>If A is divisible by k → all multiples of A are divisible by k</li>
+                  <li>If A is divisible by k → A is divisible by every factor of k (e.g. divisible by 12 → by 1, 2, 3, 4, 6, 12)</li>
+                  <li>If A is divisible by k and m → A is divisible by LCM(k, m) (e.g. by 9 and 4 → by 36, since gcd=1)</li>
+                </ul>
+              </div>
+              {/* Sometimes */}
+              <div className="rounded-lg overflow-hidden border" style={{ borderColor: "var(--yellow-border)" }}>
+                <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: "var(--yellow-light)", color: "var(--yellow)" }}>
+                  Sometimes true
+                </div>
+                <ul className="px-4 py-3 space-y-1.5" style={{ fontSize: 14, color: "var(--text-muted)" }}>
+                  <li>Divisible by 6 and 4 → divisible by 24? <em>Not always.</em> 12 is divisible by both but not by 24. The guarantee is only LCM(6,4)=12.</li>
+                </ul>
+              </div>
+              {/* Never */}
+              <div className="rounded-lg overflow-hidden border" style={{ borderColor: "var(--red-border)" }}>
+                <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: "var(--red-light)", color: "var(--red-dark)" }}>
+                  Never true
+                </div>
+                <ul className="px-4 py-3 space-y-1.5" style={{ fontSize: 14, color: "var(--text-muted)" }}>
+                  <li>The sum of an odd and an even number is always odd — never a multiple of 6 (which must be even).</li>
+                </ul>
+              </div>
+            </div>
 
             <CalloutCard title="Divisibility of Sums and Differences">
               If a divides M and a divides N, then a divides M+N and a divides M−N. (Always true — follows directly from writing M and N as multiples of a.)
