@@ -11,12 +11,12 @@ import { CH1_QUESTIONS } from "@/data/ch1-questions";
 
 const CHAPTERS: Chapter[] = [
   { number: 1, title: "A Square and A Cube", href: "/read/ch1", available: true },
-  { number: 2, title: "Playing with Numbers", available: false },
-  { number: 3, title: "Understanding Quadrilaterals", available: false },
-  { number: 4, title: "Data Handling and Graphing", available: false },
-  { number: 5, title: "Introduction to Graphs", available: false },
-  { number: 6, title: "Visualising Solid Shapes", available: false },
-  { number: 7, title: "Algebraic Expressions and Identities", available: false },
+  { number: 2, title: "Power Play", href: "/read/ch2", available: true },
+  { number: 3, title: "A Story of Numbers", href: "/read/ch3", available: true },
+  { number: 4, title: "Quadrilaterals", href: "/read/ch4", available: true },
+  { number: 5, title: "Number Play", href: "/read/ch5", available: true },
+  { number: 6, title: "We Distribute, Yet Things Multiply", href: "/read/ch6", available: true },
+  { number: 7, title: "Proportional Reasoning-1", href: "/read/ch7", available: true },
 ];
 
 export default function Chapter1Page() {
