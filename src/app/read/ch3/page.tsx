@@ -3,6 +3,8 @@ import Navbar from "@/components/layout/Navbar";
 import Sidebar, { Chapter } from "@/components/layout/Sidebar";
 import CalloutCard from "@/components/layout/CalloutCard";
 import RomanConverter from "@/components/widgets/RomanConverter";
+import BaseNExplorer from "@/components/widgets/BaseNExplorer";
+import NumberSystemComparator from "@/components/widgets/NumberSystemComparator";
 import Quiz from "@/components/widgets/Quiz";
 import { CH3_QUESTIONS } from "@/data/ch3-questions";
 
@@ -38,7 +40,7 @@ export default function Chapter3Page() {
               A Story of Numbers
             </h1>
             <div className="flex gap-2 flex-wrap mb-8">
-              {["40 min", "1 interactive", "10-question quiz"].map((pill) => (
+              {["40 min", "3 interactive", "10-question quiz"].map((pill) => (
                 <span key={pill} className="text-[11px] font-semibold px-3 py-1 rounded-full border"
                   style={{ borderColor: "var(--border-strong)", color: "var(--text-muted)", borderWidth: "1.5px" }}>
                   {pill}
@@ -62,10 +64,7 @@ export default function Chapter3Page() {
               Before you could read a single digit, someone taught you to count. But what <em>is</em> counting, really? Strip away the number names and what remains is a remarkably simple idea: <strong>one-to-one mapping</strong>. For each cow in the field, touch one stick. When the cows run out, the number of sticks you've touched is your count. No number words required.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              A <strong>number system</strong> is just a standard sequence — of sticks, sounds, or written symbols — arranged in a fixed order. You count by matching your collection to that sequence, one-to-one, following the order. The system we use today (the digits 0–9) was developed in India around 2000 years ago. The first known instance of all ten digits, including zero written as a dot, appears in the <strong>Bakhshali manuscript</strong> (c. 3rd century CE).
-            </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              <strong>Aryabhata</strong> (c. 499 CE) was the first mathematician to fully explain and perform elaborate scientific computations using all 10 symbols. The system then travelled to the Arab world around 800 CE, popularised by <strong>Al-Khwārizmī</strong> and Al-Kindi, and finally reached Europe around 1100 CE — where it took until the 17th century to be adopted widely. That's why we call these "Hindu-Arabic numerals": Hindu for where they were born, Arabic for the path they took to reach us.
+              A <strong>number system</strong> is just a standard sequence — of sticks, sounds, or written symbols — arranged in a fixed order. You count by matching your collection to that sequence, one-to-one, following the order. The digits 0–9 we use today were developed in India around 2,000 years ago, first appearing as a complete set (with zero) in the <strong>Bakhshali manuscript</strong>. They reached Europe via the Arab world around 1100 CE — which is why we call them "Hindu-Arabic numerals."
             </p>
 
             <CalloutCard title="One-to-One Mapping">
@@ -90,14 +89,15 @@ export default function Chapter3Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              Long before written symbols, people used their bodies. Hands, fingers, toes — all served as counting sequences. Tally marks scratched on bones offered a more permanent record: the <strong>Lebombo bone</strong> (c. 44,000 years old) and <strong>Ishango bone</strong> (20,000–35,000 years old) are the oldest known tally sticks, possibly used as lunar calendars.
+              Before written symbols, people used their bodies and tally marks. The <strong>Lebombo bone</strong> (c. 44,000 years old) is among the oldest known tally sticks. Some cultures took a clever shortcut and counted in groups — the <strong>Gumulgal people</strong> of Australia counted in twos (3 = 2+1, 4 = 2+2, anything above 6 was just "many").
             </p>
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The <strong>Gumulgal people</strong> of Australia took a creative shortcut: they counted in twos. So 3 = 2+1, 4 = 2+2, 5 = 2+2+1, 6 = 2+2+2. Anything above 6 was simply called "ras" (many). The Bakairi of South America and the Bushmen of South Africa independently arrived at the same scheme — suggesting this breakthrough was discovered multiple times.
+              The Romans formalised "counting in groups" using <strong>landmark numbers</strong>: I (1), V (5), X (10), L (50), C (100), D (500), M (1000). 27 becomes XXVII; 40 uses a subtractive shorthand: XL (10 before 50). Practical for everyday counting, but painful for arithmetic — and you need new symbols for large numbers.
             </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The Romans formalised "counting in groups" into a written system using <strong>landmark numbers</strong> — a small set of memorable reference points. Their landmarks: I (1), V (5), X (10), L (50), C (100), D (500), M (1000). To write 27, you break it down: 10+10+5+1+1 → XXVII. For 40, a nifty subtractive shorthand: XL (10 before 50). The Roman system was practical for everyday use in Europe, but it struggles with large numbers (need new symbols) and arithmetic (addition is painful, multiplication is agony).
-            </p>
+
+            <div className="mt-6 mb-6">
+              <NumberSystemComparator />
+            </div>
 
             <CalloutCard title="Landmark Numbers">
               Landmark numbers are easily recognisable reference points in a number system. In the Roman system: I (1), V (5), X (10), L (50), C (100), D (500), M (1000).
@@ -125,21 +125,18 @@ export default function Chapter3Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The ancient Egyptians (c. 3000 BCE) went one step further: their landmark numbers were all <strong>powers of 10</strong> — 1, 10, 100, 1000, … each represented by a distinct symbol. To write 324, you'd stamp three 100-symbols, two 10-symbols, and four 1-symbols. The convenience? Multiplying any two landmark numbers gives another landmark number. Multiplying 10 by 100 gives 1000 — also a landmark. This is the magic of a <strong>base-n system</strong>.
+              The ancient Egyptians (c. 3000 BCE) went one step further: their landmark numbers were the <strong>powers of 10</strong> — 1, 10, 100, 1000, … each with its own symbol. To write 324, you'd stamp three 100-symbols, two 10-symbols, and four 1-symbols. This is a <strong>base-n system</strong>: landmarks are n⁰, n¹, n², n³, … and multiplying any two landmarks gives another landmark.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              A base-n system chooses landmark numbers that are the powers of n: n⁰=1, n, n², n³, and so on. The Egyptian system is base-10. A base-5 system would have landmarks 1, 5, 25, 125, … The critical advantage: the product of any two landmark numbers is always another landmark number, making multiplication as simple as shifting positions. The Roman system lacks this property — V (5) times X (10) is L (50), which works, but V times L is CCL (250), which has no single landmark symbol.
+              The Egyptian (base-10) system's one drawback: to write enormous numbers you need to keep inventing new symbols. The next big idea — place value — solves that.
             </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The Egyptian system's one drawback: to write truly enormous numbers you need to keep inventing new symbols for higher powers of 10. This is where the next big idea — place value — would eventually save the day.
-            </p>
+
+            <div className="mt-6 mb-6">
+              <BaseNExplorer />
+            </div>
 
             <CalloutCard title="Base-n Number System">
-              A base-n system has landmark numbers that are the powers of n: 1, n, n², n³, … In a base-n system, the product of any two landmark numbers is always another landmark number — this makes multiplication straightforward.
-            </CalloutCard>
-
-            <CalloutCard title="Advantage of a Base">
-              In the Egyptian (base-10) system, multiplying 10 by 100 gives 1000 — also a landmark. In the Roman system, multiplying landmark numbers does not reliably give another landmark. This is why the Egyptian approach is far superior for arithmetic.
+              A base-n system has landmark numbers that are the powers of n: 1, n, n², n³, … The product of any two landmarks is always another landmark — that's what makes arithmetic clean.
             </CalloutCard>
           </section>
 

@@ -3,6 +3,8 @@ import Navbar from "@/components/layout/Navbar";
 import Sidebar, { Chapter } from "@/components/layout/Sidebar";
 import CalloutCard from "@/components/layout/CalloutCard";
 import ProportionSolver from "@/components/widgets/ProportionSolver";
+import PhotoScaler from "@/components/widgets/PhotoScaler";
+import RatioEquivalenceChecker from "@/components/widgets/RatioEquivalenceChecker";
 import Quiz from "@/components/widgets/Quiz";
 import { CH7_QUESTIONS } from "@/data/ch7-questions";
 
@@ -38,7 +40,7 @@ export default function Chapter7Page() {
               Proportional Reasoning-1
             </h1>
             <div className="flex gap-2 flex-wrap mb-8">
-              {["45 min", "1 interactive", "10-question quiz"].map((pill) => (
+              {["45 min", "3 interactive", "10-question quiz"].map((pill) => (
                 <span key={pill} className="text-[11px] font-semibold px-3 py-1 rounded-full border"
                   style={{ borderColor: "var(--border-strong)", color: "var(--text-muted)", borderWidth: "1.5px" }}>
                   {pill}
@@ -59,11 +61,12 @@ export default function Chapter7Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              You've probably resized a photo on your phone. Drag a corner and the image scales smoothly — the face stays recognisable. Drag just one side and the image stretches — the face distorts. What's the difference? In the first case, both width and height change by the <strong>same factor</strong> (multiplication). In the second case, only one dimension changes — the ratio of width to height breaks.
+              You've resized a photo on your phone. Drag a corner — both width and height change by the same factor, the face stays recognisable. Drag just one side — only one dimension changes, the face distorts. That's the core insight of <strong>proportional reasoning</strong>: two quantities change proportionally when both are multiplied by the same factor. Adding the same amount to each is <em>not</em> proportional.
             </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              This is the core insight of proportional reasoning: two quantities change <strong>proportionally</strong> when both are multiplied by the same factor. Adding the same amount to each dimension is <em>not</em> proportional — it changes the ratio. A 60×40 image shrunk by half becomes 30×20 (looks similar). The same image with 20 subtracted from each dimension becomes 40×20 (looks distorted — the width is now twice the height instead of 1.5 times).
-            </p>
+
+            <div className="mt-6 mb-6">
+              <PhotoScaler />
+            </div>
 
             <CalloutCard title="Proportional Change">
               Two quantities change proportionally when both are <strong>multiplied by the same factor</strong>. Adding or subtracting the same amount changes the ratio and is not proportional change.
@@ -116,6 +119,10 @@ export default function Chapter7Page() {
             <CalloutCard title="Proportional Ratios">
               Two ratios are proportional if their simplest forms are equal. We write <strong>a : b :: c : d</strong> to show that a:b and c:d are proportional. Reduce each ratio by its HCF to check.
             </CalloutCard>
+
+            <div className="mt-6">
+              <RatioEquivalenceChecker />
+            </div>
           </section>
 
           {/* ── SECTION 4 ── */}

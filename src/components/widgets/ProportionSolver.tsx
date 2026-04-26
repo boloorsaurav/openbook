@@ -77,7 +77,7 @@ export default function ProportionSolver() {
             <input
               key={item.key}
               type="number"
-              min={0.1}
+              min={1}
               step={1}
               value={item.val as string}
               onChange={(e) => item.setter!(e.target.value)}

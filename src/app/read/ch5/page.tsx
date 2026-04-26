@@ -3,6 +3,8 @@ import Navbar from "@/components/layout/Navbar";
 import Sidebar, { Chapter } from "@/components/layout/Sidebar";
 import CalloutCard from "@/components/layout/CalloutCard";
 import DivisibilityChecker from "@/components/widgets/DivisibilityChecker";
+import ModPatternVisualizer from "@/components/widgets/ModPatternVisualizer";
+import CryptarithmSolver from "@/components/widgets/CryptarithmSolver";
 import Quiz from "@/components/widgets/Quiz";
 import { CH5_QUESTIONS } from "@/data/ch5-questions";
 
@@ -38,7 +40,7 @@ export default function Chapter5Page() {
               Number Play
             </h1>
             <div className="flex gap-2 flex-wrap mb-8">
-              {["35 min", "1 interactive", "10-question quiz"].map((pill) => (
+              {["35 min", "3 interactive", "10-question quiz"].map((pill) => (
                 <span key={pill} className="text-[11px] font-semibold px-3 py-1 rounded-full border"
                   style={{ borderColor: "var(--border-strong)", color: "var(--text-muted)", borderWidth: "1.5px" }}>
                   {pill}
@@ -173,21 +175,19 @@ export default function Chapter5Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              Why does adding the digits tell you about divisibility by 9? Because 10 ≡ 1 (mod 9), 100 ≡ 1 (mod 9), 1000 ≡ 1 (mod 9) — every power of 10 leaves remainder 1 when divided by 9. So the number 427 = 4×100 + 2×10 + 7 has the same remainder as 4×1 + 2×1 + 7×1 = 13, which has the same remainder as 1+3 = 4. The digit sum gives the remainder.
-            </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The rule for 11 is trickier. Powers of 10 alternate mod 11: 10 ≡ −1, 100 ≡ 1, 1000 ≡ −1, … So the remainder when dividing by 11 equals the <strong>alternating sum</strong> of digits: (units digit) − (tens digit) + (hundreds digit) − … If that result is 0 or a multiple of 11, the number is divisible by 11.
-            </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              For composite divisors: check by <em>coprime</em> factors. To test divisibility by 24 = 3 × 8, check 3 and 8 separately (not 4 and 6, since gcd(4,6) = 2 ≠ 1). Checking coprime factors guarantees the LCM equals the product.
+              The digit-sum trick for 9 isn't magic — it's a consequence of how powers of 10 behave mod 9. Every power of 10 leaves remainder 1 when divided by 9, so a number's remainder equals the sum of its digits. The rule for 11 works similarly, but powers of 10 alternate +1, −1, +1, −1 mod 11 — that's why we use the alternating sum. The widget below makes the pattern visible.
             </p>
 
-            <CalloutCard title="Divisibility by 9">
-              A number is divisible by 9 if and only if the <strong>sum of its digits</strong> is divisible by 9. The digit sum gives the remainder when the number is divided by 9.
-            </CalloutCard>
+            <div className="mt-6 mb-6">
+              <ModPatternVisualizer />
+            </div>
 
-            <CalloutCard title="Divisibility by 11">
-              Alternately sum and subtract digits from right to left (units positive, tens negative, hundreds positive, …). If the result is 0 or a multiple of 11, the number is divisible by 11.
+            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
+              For composite divisors, check by <em>coprime</em> factors. To test divisibility by 24 = 3 × 8, check 3 and 8 separately (not 4 and 6, since gcd(4,6) ≠ 1). Coprime factors guarantee LCM equals the product.
+            </p>
+
+            <CalloutCard title="Divisibility by 9 and 11">
+              A number is divisible by 9 if its <strong>digit sum</strong> is divisible by 9, and divisible by 11 if its <strong>alternating digit sum</strong> (units − tens + hundreds − …) is divisible by 11.
             </CalloutCard>
 
             <div className="mt-6">
@@ -232,14 +232,15 @@ export default function Chapter5Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              A <strong>cryptarithm</strong> is a mathematical puzzle where letters replace digits. Each letter stands for a unique digit, and the first digit of any multi-digit number is never 0. For example: PQ × 8 = RS. What are PQ and RS?
-            </p>
-            <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              Since PQ is a 2-digit number and RS is a 2-digit number, PQ × 8 must stay below 100. So PQ ≤ 12. Since PQ × 8 must be a 2-digit number, PQ ≥ 10. Testing: 10×8=80, 11×8=88, 12×8=96. For unique digits: 12×8=96 works (P=1,Q=2,R=9,S=6, all distinct). Cryptarithms are solved by combining divisibility reasoning, digit constraints, and systematic elimination.
+              A <strong>cryptarithm</strong> is a puzzle where letters replace digits. Each letter stands for a unique digit, and the first digit of any number is never 0. They're solved by combining place-value, divisibility, and parity reasoning to narrow the search. Try a few:
             </p>
 
+            <div className="mt-6 mb-6">
+              <CryptarithmSolver />
+            </div>
+
             <CalloutCard title="Cryptarithm Rules">
-              Each letter stands for a <strong>unique</strong> digit. The first digit of any number is never 0. Solve by combining place-value reasoning with divisibility and parity arguments.
+              Each letter stands for a <strong>unique</strong> digit. The first digit is never 0. Combine place-value reasoning with divisibility and parity arguments to narrow possibilities.
             </CalloutCard>
           </section>
 

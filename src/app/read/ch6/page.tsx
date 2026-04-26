@@ -2,7 +2,8 @@
 import Navbar from "@/components/layout/Navbar";
 import Sidebar, { Chapter } from "@/components/layout/Sidebar";
 import CalloutCard from "@/components/layout/CalloutCard";
-import AreaModel from "@/components/widgets/AreaModel";
+import IdentityTriple from "@/components/widgets/IdentityTriple";
+import ErrorSpotter from "@/components/widgets/ErrorSpotter";
 import Quiz from "@/components/widgets/Quiz";
 import { CH6_QUESTIONS } from "@/data/ch6-questions";
 
@@ -38,7 +39,7 @@ export default function Chapter6Page() {
               We Distribute, Yet Things Multiply
             </h1>
             <div className="flex gap-2 flex-wrap mb-8">
-              {["45 min", "1 interactive", "10-question quiz"].map((pill) => (
+              {["45 min", "2 interactive", "10-question quiz"].map((pill) => (
                 <span key={pill} className="text-[11px] font-semibold px-3 py-1 rounded-full border"
                   style={{ borderColor: "var(--border-strong)", color: "var(--text-muted)", borderWidth: "1.5px" }}>
                   {pill}
@@ -150,7 +151,7 @@ export default function Chapter6Page() {
             </CalloutCard>
 
             <div className="mt-6">
-              <AreaModel />
+              <IdentityTriple />
             </div>
           </section>
 
@@ -167,16 +168,15 @@ export default function Chapter6Page() {
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              Algebraic identities are easy to mis-apply. The two most common errors:
+              The single most common algebra mistake: <strong>forgetting the middle term</strong>. Students see (a + b)² and write a² + b², treating squaring like it distributes — it doesn't. The missing 2ab term breaks the identity. Try spotting the error yourself:
             </p>
-            <ul className="mb-4 space-y-2 pl-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              <li>• <strong>Forgetting the middle term:</strong> Writing (2x + 3)² = 4x² + 9 instead of 4x² + 12x + 9. The 2ab term (here, 2 × 2x × 3 = 12x) is always missing when students naively square each part separately.</li>
-              <li>• <strong>Misapplying the distributive property:</strong> Writing (a + b)² as a² + b² treats squaring like it distributes over addition — it doesn't. Squaring is not linear.</li>
-              <li>• <strong>Incorrectly combining like terms:</strong> Only terms with the <em>same</em> letter-numbers (and powers) can be combined. x² and x are not like terms.</li>
-            </ul>
+
+            <div className="mt-6 mb-6">
+              <ErrorSpotter />
+            </div>
 
             <CalloutCard title="Check Your Work">
-              Always verify each step. The most reliable check: substitute a simple number. If (2x+3)² = 4x²+9 were true, substituting x=1 gives 25 = 13 — clearly wrong. The correct expansion gives 25 = 25.
+              The fastest sanity check: substitute a simple number. If (2x+3)² = 4x²+9 were true, plugging in x=1 gives 25 = 13 — clearly wrong. The correct expansion gives 25 = 25.
             </CalloutCard>
           </section>
 
