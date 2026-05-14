@@ -1,3 +1,20 @@
+/**
+ * Navbar — the sticky top bar shown on every page.
+ *
+ * Shows the "Openbook" brand on the left (links back to home) and an optional
+ * page title to its right, separated by a thin vertical divider.
+ *
+ * Props:
+ *   title — optional. The chapter or page name shown next to the brand.
+ *           Example: "Class 8 Math · Playing with Numbers".
+ *
+ * Used by: every chapter page (src/app/read/chN/page.tsx) and the home page.
+ *
+ * Gotchas:
+ *   - It's `sticky top-0` with z-index 10, so anything that should sit above
+ *     it needs a higher z-index.
+ *   - The title is `truncate`d on narrow screens — long titles get cut off.
+ */
 "use client";
 import Link from "next/link";
 

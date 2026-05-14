@@ -425,3 +425,37 @@ npx vercel --prod --yes  # deploy to openbook-ncert.vercel.app
 ```
 
 No env vars needed. App is fully static — no server, no auth, no database.
+
+---
+
+## Map of the system
+
+How a chapter page is assembled. Read top-to-bottom — each level composes the things below it.
+
+```
+src/app/read/chN/page.tsx        ← one page per chapter (the "main assembly")
+│
+├── Navbar (layout/)             ← sticky top bar with brand + title
+├── Sidebar (layout/)            ← left rail listing all 7 chapters
+│
+└── <main> chapter content
+    │
+    ├── section 1, 2, 3, …       ← prose + the bits below, mixed
+    │   ├── prose paragraphs     ← plain JSX, styled inline
+    │   ├── CalloutCard (layout/)← green box for key ideas
+    │   └── <SomeWidget />       ← interactive piece (e.g. LockerSimulation)
+    │       └── WidgetShell      ← every widget wraps itself in this
+    │
+    └── Quiz (widgets/)          ← always last, before the footer
+        ├── pool: chN-questions  ← from src/data/chN-questions.ts
+        └── WidgetShell          ← Quiz also wraps itself
+```
+
+**Three folders, three jobs:**
+- `src/components/layout/` — chrome that wraps content (Navbar, Sidebar, CalloutCard, WidgetShell). Used everywhere.
+- `src/components/widgets/` — interactive pieces with their own state (Quiz, LockerSimulation, etc.). Each wraps itself in WidgetShell.
+- `src/data/` — quiz pools (`chN-questions.ts`) and chapter briefs (`briefs/chN-brief.md`). No code, just content.
+
+When you ask for a change, knowing which of these three layers you're touching is usually enough to scope the work.
+
+_Operator-facing prompting playbook lives in [README.md](README.md) under "How to ask Claude for a change"._

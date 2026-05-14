@@ -1,3 +1,23 @@
+/**
+ * LockerSimulation — animates the classic "100 lockers, 100 people" puzzle to show
+ * that only perfect-square lockers end up open.
+ *
+ * 100 lockers laid out in a 10×10 grid. Person N toggles every Nth locker. Watch
+ * the animation, scrub with the slider, or jump to the end. At the end, only the
+ * perfect-square lockers (1, 4, 9, 16, …) are green/open, with an explanation
+ * underneath. Yellow tint shows lockers being touched on the current pass.
+ *
+ * Props: none. It's fully self-contained (constants for total/speed are at the top of the file).
+ *
+ * Used by: chapter 1 (A Square and A Cube). Could be reused anywhere perfect squares
+ *          or factor counts are introduced.
+ *
+ * Gotchas:
+ *   - Pure simulation — `computeState(step)` recomputes the whole locker array from
+ *     scratch each render. Cheap at 100 lockers, but don't blindly raise TOTAL.
+ *   - The interval cleanup in the useEffect depends on `running`. Pausing/resuming
+ *     resets the cadence cleanly; don't add new effect deps without understanding this.
+ */
 "use client";
 import { useState, useRef, useEffect } from "react";
 import WidgetShell from "@/components/layout/WidgetShell";

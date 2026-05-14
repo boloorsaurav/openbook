@@ -1,3 +1,18 @@
+/**
+ * WidgetShell — the rounded card-with-header that wraps every interactive widget.
+ *
+ * Provides consistent chrome (label bar on top, optional badge on the right,
+ * padded body below). Every widget in src/components/widgets/ uses this so
+ * all widgets look the same from the outside.
+ *
+ * Props:
+ *   label    — short uppercase text in the header bar. Example: "Interactive · Locker Simulation".
+ *   badge    — optional. A small pill on the right for status or count. Example: "1 of 10".
+ *   children — the widget's actual content (controls, visualization, etc.).
+ *
+ * Used by: every widget in src/components/widgets/. NOT used directly by chapter pages —
+ *          the widget already wraps itself, so pages just render <SomeWidget />.
+ */
 interface WidgetShellProps {
   label: string;
   badge?: string;
