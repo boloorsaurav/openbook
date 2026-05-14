@@ -1,3 +1,24 @@
+/**
+ * Sidebar — the left rail listing every chapter in the grade.
+ *
+ * Shows a "Contents" header and one row per chapter. The active chapter gets
+ * a black left border, a tinted background, and bold text. Chapters that
+ * aren't built yet (available: false) are greyed out and not clickable.
+ *
+ * Props:
+ *   chapters       — full list of chapters. Always pass ALL 7, even unbuilt ones.
+ *                    Each: { number, title, href?, available? }.
+ *   activeChapter  — the chapter number that's currently open. Highlights that row.
+ *
+ * Used by: every chapter page. Wrap it in a sticky container in the page itself
+ *          (see the page template in CLAUDE.md) — this component does not stick on its own.
+ *
+ * Gotchas:
+ *   - A chapter is treated as "available" only if BOTH `available: true` AND `href` are set.
+ *     Setting one without the other will make it look greyed out.
+ *   - When you ship a new chapter, flip its `available` to true and add `href` in EVERY
+ *     chapter page's CHAPTERS array (the list is duplicated per page on purpose).
+ */
 "use client";
 import Link from "next/link";
 

@@ -1,3 +1,25 @@
+/**
+ * Quiz — a 10-question multiple-choice quiz with hints, explanations, and a final score screen.
+ *
+ * Randomly samples `count` questions from the supplied pool when the quiz mounts
+ * (and again when the user clicks "New Set of 10" at the end). Shows a progress
+ * bar of dots, an on-demand hint per question, green/red feedback after picking
+ * an answer, an explanation, and a Next button. Ends with a score and a message
+ * tuned to the percentage.
+ *
+ * Props:
+ *   pool   — the full pool of questions for this chapter (see src/data/chN-questions.ts).
+ *            Each question: { question, options, answer (0-indexed), hint?, explanation? }.
+ *   count  — how many questions to randomly pick from the pool. Defaults to 10.
+ *
+ * Used by: every chapter page, always as the last section before the footer.
+ *
+ * Gotchas:
+ *   - The pool should have at least 2× `count` questions so the random sampling
+ *     actually feels random across visits.
+ *   - `answer` is 0-indexed in the question objects.
+ *   - Sampling happens once per mount; navigating away and back picks a fresh set.
+ */
 "use client";
 import { useState, useMemo } from "react";
 import WidgetShell from "@/components/layout/WidgetShell";
