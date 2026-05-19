@@ -43,6 +43,7 @@ next-env.d.ts
 
 # NCERT source PDFs (large files, reference only)
 NCERT-Math-8th/
+NCERT-Math-11th/
 
 # Claude Code local tooling
 .claude/

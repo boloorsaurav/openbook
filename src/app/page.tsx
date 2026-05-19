@@ -19,7 +19,7 @@ const SECTIONS: Section[] = [
       { name: "Grade 8", href: "/read/ch1" },
       { name: "Grade 9" },
       { name: "Grade 10" },
-      { name: "Grade 11" },
+      { name: "Grade 11", href: "/read/grade-11/ch1" },
       { name: "Grade 12" },
     ],
   },
