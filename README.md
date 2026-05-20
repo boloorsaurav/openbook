@@ -34,8 +34,10 @@ Pushes to `main` auto-deploy to production via Vercel. Pull requests get their o
 
 This section is for **you**, the human running this project. It's a short playbook of phrasings that work well — each one tells Claude exactly which files to look at, so it spends less time guessing.
 
-**Build a new chapter page**
-> "Build chapter 3 from `src/data/briefs/ch3-brief.md`, following the Full Page Template in CLAUDE.md. Use existing widgets where they fit; tell me before you build a new one."
+**Build a new chapter page** (preferred — uses the 2-stage pipeline so Claude doesn't read raw PDFs)
+> "Use the create-chapter skill to build Grade 11 Chapter 3."
+
+The skill lives at `.claude/skills/create-chapter/SKILL.md`. It runs Stage 1 (DeepSeek extracts a brief from the PDF, cheap) then Stage 2 (Claude implements the page, widgets, quiz from the brief) and opens a PR. Requires `DEEPSEEK_API_KEY` in your shell env, one-time.
 
 **Add a new interactive widget**
 > "Add a widget for [concept] under `src/components/widgets/`. Wrap it in `<WidgetShell>`. Follow the existing widget pattern (e.g. see `LockerSimulation.tsx`). Don't add it to a chapter page yet — show me the widget first."
