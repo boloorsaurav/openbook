@@ -45,5 +45,6 @@ next-env.d.ts
 NCERT-Math-8th/
 NCERT-Math-11th/
 
-# Claude Code local tooling
-.claude/
+# Claude Code local tooling — keep skills in git, ignore everything else
+.claude/*
+!.claude/skills/
