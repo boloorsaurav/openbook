@@ -86,7 +86,7 @@ BODY=$(jq -n \
       { role: "user",   content: $user }
     ],
     temperature: 0.3,
-    max_tokens: 6000
+    max_tokens: 8000
   }')
 
 # --- call DeepSeek ---
