@@ -11,7 +11,7 @@ import { GRADE_11_CH2_QUESTIONS } from "@/data/grade-11-ch2-questions";
 const CHAPTERS: Chapter[] = [
   { number: 1, title: "Sets", href: "/read/grade-11/ch1", available: true },
   { number: 2, title: "Relations and Functions", href: "/read/grade-11/ch2", available: true },
-  { number: 3, title: "Trigonometric Functions", available: false },
+  { number: 3, title: "Trigonometric Functions", href: "/read/grade-11/ch3", available: true },
   { number: 4, title: "Complex Numbers and Quadratic Equations", available: false },
   { number: 5, title: "Linear Inequalities", available: false },
   { number: 6, title: "Permutations and Combinations", available: false },
