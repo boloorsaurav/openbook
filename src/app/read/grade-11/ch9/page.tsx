@@ -19,7 +19,7 @@ const CHAPTERS: Chapter[] = [
   { number: 8, title: "Sequences and Series", href: "/read/grade-11/ch8", available: true },
   { number: 9, title: "Straight Lines", href: "/read/grade-11/ch9", available: true },
   { number: 10, title: "Conic Sections", href: "/read/grade-11/ch10", available: true },
-  { number: 11, title: "Three Dimensional Geometry", available: false },
+  { number: 11, title: "Three Dimensional Geometry", href: "/read/grade-11/ch11", available: true },
   { number: 12, title: "Limits and Derivatives", available: false },
   { number: 13, title: "Statistics", available: false },
   { number: 14, title: "Probability", available: false },
