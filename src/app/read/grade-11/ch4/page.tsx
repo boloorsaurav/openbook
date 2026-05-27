@@ -17,7 +17,7 @@ const CHAPTERS: Chapter[] = [
   { number: 6, title: "Permutations and Combinations", href: "/read/grade-11/ch6", available: true },
   { number: 7, title: "Binomial Theorem", href: "/read/grade-11/ch7", available: true },
   { number: 8, title: "Sequences and Series", href: "/read/grade-11/ch8", available: true },
-  { number: 9, title: "Straight Lines", available: false },
+  { number: 9, title: "Straight Lines", href: "/read/grade-11/ch9", available: true },
   { number: 10, title: "Conic Sections", available: false },
   { number: 11, title: "Three Dimensional Geometry", available: false },
   { number: 12, title: "Limits and Derivatives", available: false },
