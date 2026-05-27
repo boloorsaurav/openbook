@@ -14,7 +14,7 @@ const CHAPTERS: Chapter[] = [
   { number: 4, title: "Complex Numbers and Quadratic Equations", href: "/read/grade-11/ch4", available: true },
   { number: 5, title: "Linear Inequalities", href: "/read/grade-11/ch5", available: true },
   { number: 6, title: "Permutations and Combinations", href: "/read/grade-11/ch6", available: true },
-  { number: 7, title: "Binomial Theorem", available: false },
+  { number: 7, title: "Binomial Theorem", href: "/read/grade-11/ch7", available: true },
   { number: 8, title: "Sequences and Series", available: false },
   { number: 9, title: "Straight Lines", available: false },
   { number: 10, title: "Conic Sections", available: false },
