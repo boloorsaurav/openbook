@@ -20,7 +20,7 @@ const CHAPTERS: Chapter[] = [
   { number: 10, title: "Conic Sections", href: "/read/grade-11/ch10", available: true },
   { number: 11, title: "Three Dimensional Geometry", href: "/read/grade-11/ch11", available: true },
   { number: 12, title: "Limits and Derivatives", href: "/read/grade-11/ch12", available: true },
-  { number: 13, title: "Statistics", available: false },
+  { number: 13, title: "Statistics", href: "/read/grade-11/ch13", available: true },
   { number: 14, title: "Probability", available: false },
 ];
 
