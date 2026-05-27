@@ -2,10 +2,11 @@
 import Navbar from "@/components/layout/Navbar";
 import Sidebar, { Chapter } from "@/components/layout/Sidebar";
 import CalloutCard from "@/components/layout/CalloutCard";
-import SetRepresenter from "@/components/widgets/SetRepresenter";
-import VennDiagramExplorer from "@/components/widgets/VennDiagramExplorer";
+import SequenceGenerator from "@/components/widgets/SequenceGenerator";
+import GeometricProgression from "@/components/widgets/GeometricProgression";
+import SpecialSeriesCalculator from "@/components/widgets/SpecialSeriesCalculator";
 import Quiz from "@/components/widgets/Quiz";
-import { GRADE_11_CH1_QUESTIONS } from "@/data/grade-11-ch1-questions";
+import { GRADE_11_CH8_QUESTIONS } from "@/data/grade-11-ch8-questions";
 
 const CHAPTERS: Chapter[] = [
   { number: 1, title: "Sets", href: "/read/grade-11/ch1", available: true },
@@ -24,14 +25,14 @@ const CHAPTERS: Chapter[] = [
   { number: 14, title: "Probability", available: false },
 ];
 
-export default function Grade11Chapter1Page() {
+export default function Grade11Chapter8Page() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar title="Class 11 Math · Sets" />
+      <Navbar title="Class 11 Math · Sequences and Series" />
 
       <div className="flex flex-1">
         <div className="hidden md:block sticky top-12 h-[calc(100vh-3rem)] overflow-y-auto">
-          <Sidebar chapters={CHAPTERS} activeChapter={1} />
+          <Sidebar chapters={CHAPTERS} activeChapter={8} />
         </div>
 
         <main className="flex-1 max-w-2xl mx-auto px-6 md:px-12 py-10 pb-24">
@@ -40,13 +41,13 @@ export default function Grade11Chapter1Page() {
           <section id="intro" className="scroll-mt-16">
             <p className="text-[10px] font-bold uppercase mb-2"
               style={{ color: "var(--text-muted)", letterSpacing: "0.12em" }}>
-              Chapter 1 · Mathematics · Grade 11
+              Chapter 8 · Mathematics · Grade 11
             </p>
             <h1 className="text-3xl font-extrabold mb-4 tracking-tight" style={{ color: "var(--text)" }}>
-              Sets
+              Sequences and Series
             </h1>
             <div className="flex gap-2 flex-wrap mb-8">
-              {["25 min", "2 interactive", "22-question quiz"].map((pill) => (
+              {["45 min", "3 interactive", "10-question quiz"].map((pill) => (
                 <span key={pill} className="text-[11px] font-semibold px-3 py-1 rounded-full border"
                   style={{ borderColor: "var(--border-strong)", color: "var(--text-muted)", borderWidth: "1.5px" }}>
                   {pill}
@@ -61,27 +62,24 @@ export default function Grade11Chapter1Page() {
                 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--text)" }}>1</span>
               <div>
                 <p className="mb-0.5" style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
-                  What is a Set
+                  Introduction
                 </p>
                 <h2 className="font-bold" style={{ fontSize: 20, color: "var(--text)" }}>
-                  Well-defined collections
+                  Lists with rules
                 </h2>
               </div>
             </div>
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              A <strong>set</strong> is a well-defined collection of distinct objects. "Well-defined" is the key word — for any given object, there must be no ambiguity about whether it belongs in the set or not. "The collection of tall people" is not a set (how tall is tall?); "the collection of all prime numbers less than 20" is a set.
+              A <strong>sequence</strong> is an ordered list of numbers. The numbers in it are called <em>terms</em>. The first term is a₁, the second a₂, and the nth (the &quot;general term&quot;) is aₙ. Sequences that follow a specific pattern are called <strong>progressions</strong>.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              Sets are usually denoted by capital letters (A, B, S, …) and their elements by lowercase letters. To say <em>x is an element of A</em>, we write <strong>x ∈ A</strong>. To say <em>x is not in A</em>, we write <strong>x ∉ A</strong>.
+              In this chapter we focus on three patterns. The <strong>arithmetic progression</strong> (constant difference between consecutive terms) you&apos;ve seen before. The <strong>geometric progression</strong> (constant ratio) is new. And we&apos;ll meet three <strong>special series</strong> — the sums of natural numbers, their squares, and their cubes — that have surprisingly clean closed-form formulas.
             </p>
 
-            <CalloutCard title="Standard number sets">
-              <strong>ℕ</strong> = natural numbers {`{1, 2, 3, …}`}<br />
-              <strong>ℤ</strong> = integers {`{…, −2, −1, 0, 1, 2, …}`}<br />
-              <strong>ℚ</strong> = rational numbers (fractions p/q with q ≠ 0)<br />
-              <strong>ℝ</strong> = real numbers (everything on the number line)
+            <CalloutCard title="Finite vs infinite">
+              A sequence with finitely many terms is finite (e.g., 2, 4, 6, 8, 10). A sequence that goes on forever is infinite (e.g., 1, 1/2, 1/4, 1/8, …). Same for series — the sum can be over a finite number of terms or an infinite number.
             </CalloutCard>
           </section>
 
@@ -92,29 +90,30 @@ export default function Grade11Chapter1Page() {
                 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--text)" }}>2</span>
               <div>
                 <p className="mb-0.5" style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
-                  Two ways to write a set
+                  Section 8.2
                 </p>
                 <h2 className="font-bold" style={{ fontSize: 20, color: "var(--text)" }}>
-                  Roster form vs Set-builder form
+                  Sequences
                 </h2>
               </div>
             </div>
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The same set can be written in two equivalent ways. <strong>Roster form</strong> lists every element inside braces, separated by commas: {`{2, 4, 6, 8, 10}`}. <strong>Set-builder form</strong> describes the rule that defines membership: {`{x : x is an even natural number less than 12}`}. Both describe the same set — pick whichever is clearer for the situation.
+              A sequence is fundamentally a <strong>function from the natural numbers to numbers</strong>. The input is the position n; the output is the term aₙ. So writing a sequence as aₙ = 2n + 1 is exactly the same as defining a function on the positive integers.
             </p>
+
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              For an infinite set, roster form must use an ellipsis (…) to signal continuation: {`{x : x ∈ ℕ}`} = {`{1, 2, 3, 4, …}`}. The order of elements inside a set doesn't matter, and repetition is ignored — {`{1, 2, 2, 3}`} is the same set as {`{1, 2, 3}`}.
+              Most sequences in this chapter come from explicit formulas (plug n in, get aₙ out). But some are defined by a <strong>recurrence relation</strong> — each term is computed from earlier terms. The famous Fibonacci sequence has a₁ = a₂ = 1 and aₙ = aₙ₋₁ + aₙ₋₂ for n ≥ 3, giving 1, 1, 2, 3, 5, 8, 13, …
             </p>
+
+            <CalloutCard title="When there is no formula">
+              The sequence of primes 2, 3, 5, 7, 11, 13, … follows a clear pattern (each term is the next prime) but there&apos;s <em>no</em> known closed-form expression for the nth prime. Some sequences resist algebra and can only be described verbally.
+            </CalloutCard>
 
             <div className="mt-6 mb-6">
-              <SetRepresenter />
+              <SequenceGenerator />
             </div>
-
-            <CalloutCard title="Cardinality">
-              The number of distinct elements in a finite set A is called its <strong>cardinality</strong>, written n(A) or |A|. A set with no elements is called the <strong>empty set</strong>, denoted ∅ or {`{ }`}. Its cardinality is 0.
-            </CalloutCard>
           </section>
 
           {/* ── SECTION 3 ── */}
@@ -124,28 +123,35 @@ export default function Grade11Chapter1Page() {
                 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--text)" }}>3</span>
               <div>
                 <p className="mb-0.5" style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
-                  Subsets and Power Sets
+                  Section 8.3
                 </p>
                 <h2 className="font-bold" style={{ fontSize: 20, color: "var(--text)" }}>
-                  Sets inside sets
+                  Series and Sigma notation
                 </h2>
               </div>
             </div>
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              A set A is a <strong>subset</strong> of B (written <strong>A ⊂ B</strong>) if every element of A is also in B. So {`{1, 2}`} ⊂ {`{1, 2, 3}`}, but {`{1, 4}`} is not a subset of {`{1, 2, 3}`} because 4 isn't in the larger set. Every set is a subset of itself, and the empty set is a subset of every set.
+              Take a sequence a₁, a₂, a₃, …, aₙ and add the terms together. The expression you get is called a <strong>series</strong>:
             </p>
+
+            <p className="leading-relaxed mb-4 font-mono text-sm px-4 py-3 rounded-lg text-center"
+              style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
+              a₁ + a₂ + a₃ + … + aₙ
+            </p>
+
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              The <strong>power set</strong> of A, written P(A), is the set of all subsets of A — including ∅ and A itself. If A has n elements, then P(A) has exactly <strong>2ⁿ</strong> elements. For A = {`{a, b}`}, the power set is P(A) = {`{ ∅, {a}, {b}, {a, b} }`}, which has 2² = 4 members.
+              For brevity, mathematicians compress this with the Greek letter Σ (sigma):
             </p>
 
-            <CalloutCard title="Why 2ⁿ subsets">
-              For each of the n elements, you make an independent yes/no decision about whether to include it in the subset. Two choices per element, n elements, gives 2 × 2 × … × 2 = 2ⁿ total subsets.
-            </CalloutCard>
+            <p className="leading-relaxed mb-4 font-mono text-sm px-4 py-3 rounded-lg text-center font-bold"
+              style={{ background: "var(--green-light)", border: "1.5px solid var(--green-border)", color: "var(--green-dark)" }}>
+              Σ from k=1 to n of aₖ
+            </p>
 
-            <CalloutCard title="Set equality">
-              Two sets A and B are equal (written A = B) when A ⊂ B and B ⊂ A — that is, they have exactly the same elements. Order and repetition don't matter; only membership does.
+            <CalloutCard title="Series vs sum">
+              The word <em>series</em> means the expression 1 + 3 + 5 + 7, while <em>sum</em> means the number 16 you get when you actually add. The distinction matters when you&apos;re writing formulas: &quot;the sum of the series&quot; is a number, &quot;the series&quot; is the expression.
             </CalloutCard>
           </section>
 
@@ -156,40 +162,46 @@ export default function Grade11Chapter1Page() {
                 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--text)" }}>4</span>
               <div>
                 <p className="mb-0.5" style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
-                  Operations on Sets
+                  Section 8.4
                 </p>
                 <h2 className="font-bold" style={{ fontSize: 20, color: "var(--text)" }}>
-                  Union, intersection, difference, complement
+                  Geometric Progression (G.P.)
                 </h2>
               </div>
             </div>
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              When we work with several sets at once, we usually fix a <strong>universal set</strong> U that contains everything under discussion. Inside U, four basic operations let us build new sets from old ones:
+              A <strong>geometric progression</strong> is a sequence where each term is the previous one multiplied by a fixed number called the <strong>common ratio</strong> r:
             </p>
 
-            <ul className="mb-4 space-y-1 pl-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              <li>• <strong>Union</strong> (A ∪ B): every element that is in A, or in B, or in both.</li>
-              <li>• <strong>Intersection</strong> (A ∩ B): elements that are in both A and B.</li>
-              <li>• <strong>Difference</strong> (A − B): elements in A but not in B.</li>
-              <li>• <strong>Complement</strong> (A′): elements of U that are not in A.</li>
-            </ul>
+            <p className="leading-relaxed mb-4 font-mono text-sm px-4 py-3 rounded-lg text-center"
+              style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
+              a, ar, ar², ar³, …,  with aₙ = a · r^(n−1)
+            </p>
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              These operations are easiest to see with a <strong>Venn diagram</strong> — two overlapping circles inside a rectangle (the universal set). The widget below lets you toggle between operations and watch which region lights up.
+              Examples: 3, 6, 12, 24, 48 has a = 3, r = 2. 100, 50, 25, 12.5, … has a = 100, r = 1/2. Population growth, compound interest, and radioactive decay are all geometric in nature.
             </p>
 
-            <div className="mt-6 mb-6">
-              <VennDiagramExplorer />
-            </div>
-
-            <CalloutCard title="Inclusion–Exclusion Principle">
-              <strong>n(A ∪ B) = n(A) + n(B) − n(A ∩ B)</strong>. Adding the cardinalities double-counts the intersection — subtracting it once corrects the over-count. Useful for word problems involving overlapping groups.
+            <CalloutCard title="Sum of a finite G.P.">
+              For the first n terms of a G.P. with first term a and ratio r ≠ 1:<br />
+              <strong>Sₙ = a(1 − rⁿ) / (1 − r)</strong>, equivalently <strong>a(rⁿ − 1) / (r − 1)</strong>.<br />
+              If r = 1 every term equals a, so the sum is just n·a.
             </CalloutCard>
 
-            <CalloutCard title="Disjoint sets">
-              Sets A and B are <strong>disjoint</strong> when A ∩ B = ∅. In that case, n(A ∪ B) = n(A) + n(B) — no correction needed because there's no overlap.
+            <CalloutCard title="Sum to infinity — only when |r| < 1">
+              When the ratio shrinks each term, an infinite G.P. has a finite total:<br />
+              <strong>S∞ = a / (1 − r), valid only for |r| &lt; 1.</strong><br />
+              For example, 1 + 1/2 + 1/4 + 1/8 + … = 2. If |r| ≥ 1, the series diverges (terms don&apos;t shrink, sum grows without bound).
+            </CalloutCard>
+
+            <div className="mt-6 mb-6">
+              <GeometricProgression />
+            </div>
+
+            <CalloutCard title="Geometric mean">
+              The <strong>geometric mean</strong> of two positive numbers a and b is <strong>√(a·b)</strong>. It&apos;s the middle term G when a, G, b form a three-term G.P. — and it&apos;s always less than or equal to the arithmetic mean (a + b)/2, with equality only when a = b. This <strong>AM ≥ GM inequality</strong> is one of the most-used inequalities in all of algebra.
             </CalloutCard>
           </section>
 
@@ -200,34 +212,42 @@ export default function Grade11Chapter1Page() {
                 style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 40, color: "var(--text)" }}>5</span>
               <div>
                 <p className="mb-0.5" style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
-                  Two laws worth memorising
+                  Section 8.5
                 </p>
                 <h2 className="font-bold" style={{ fontSize: 20, color: "var(--text)" }}>
-                  De Morgan&apos;s Laws
+                  Three special series
                 </h2>
               </div>
             </div>
             <hr className="mb-6" style={{ borderColor: "var(--border)" }} />
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              When you take a complement, ∪ and ∩ swap places. This pair of identities, named after the 19th-century logician Augustus De Morgan, comes up constantly in algebra, logic, and probability:
+              These three sums come up over and over — in problem sets, in calculus, in physics. Memorise the closed forms:
             </p>
 
             <p className="leading-relaxed mb-2 font-mono text-sm px-4 py-3 rounded-lg"
               style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
-              (A ∪ B)′ = A′ ∩ B′
+              1 + 2 + 3 + … + n = n(n+1) / 2
+            </p>
+            <p className="leading-relaxed mb-2 font-mono text-sm px-4 py-3 rounded-lg"
+              style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
+              1² + 2² + 3² + … + n² = n(n+1)(2n+1) / 6
             </p>
             <p className="leading-relaxed mb-4 font-mono text-sm px-4 py-3 rounded-lg"
               style={{ background: "var(--bg-sidebar)", border: "1.5px solid var(--border)", color: "var(--text)" }}>
-              (A ∩ B)′ = A′ ∪ B′
+              1³ + 2³ + 3³ + … + n³ = [ n(n+1)/2 ]²
             </p>
 
             <p className="leading-relaxed mb-4" style={{ color: "var(--text-muted)", fontSize: 15 }}>
-              In words: <em>the complement of a union is the intersection of the complements</em>, and vice versa. You can verify either one with the Venn diagram widget above — pick <strong>(A ∪ B)′</strong> and notice it lights up exactly the elements outside <em>both</em> circles, which is the same as A′ ∩ B′.
+              The first is the classic &quot;Gauss schoolboy&quot; sum (legend has it that the 9-year-old Gauss found this in seconds by pairing 1+100, 2+99, …). The third has a beautiful identity buried in it: the sum of the first n cubes equals the <em>square</em> of the sum of the first n integers.
             </p>
 
-            <CalloutCard title="De Morgan's Laws — practical use">
-              These laws let you rewrite "not (A or B)" as "(not A) and (not B)" — handy when a logical condition is easier to negate than to check directly.
+            <div className="mt-6 mb-6">
+              <SpecialSeriesCalculator />
+            </div>
+
+            <CalloutCard title="Use these as building blocks">
+              For more complex sums, break the expression into pieces and apply the formulas separately. For example, Σ(k² + 3k) from 1 to n = Σk² + 3·Σk = n(n+1)(2n+1)/6 + 3·n(n+1)/2. Linearity of summation does the rest.
             </CalloutCard>
           </section>
 
@@ -237,13 +257,13 @@ export default function Grade11Chapter1Page() {
               Check Your Understanding
             </h2>
             <p className="mb-6" style={{ color: "var(--text-muted)", fontSize: 14 }}>
-              10 questions sampled from a 22-question pool. Take your time.
+              10 questions sampled from a 25-question pool. Take your time.
             </p>
-            <Quiz pool={GRADE_11_CH1_QUESTIONS} />
+            <Quiz pool={GRADE_11_CH8_QUESTIONS} />
           </section>
 
           <div className="mt-16 pt-6 border-t" style={{ borderColor: "var(--border)" }}>
-            <span className="text-sm" style={{ color: "var(--text-muted)" }}>Chapter 1 of 14</span>
+            <span className="text-sm" style={{ color: "var(--text-muted)" }}>Chapter 8 of 14</span>
           </div>
 
         </main>
