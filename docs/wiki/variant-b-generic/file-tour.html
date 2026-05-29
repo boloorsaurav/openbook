@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openbook Wiki · File Tour</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="index.html">Openbook Docs</a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="design-system.html">Design</a>
+      <a href="widgets.html">Widgets</a>
+      <a href="chapter-pipeline.html">Pipeline</a>
+      <a href="file-tour.html">Files</a>
+    </nav>
+  </div>
+</header>
+<div class="track-toggle">
+  <span class="label">View for</span>
+  <div class="buttons">
+    <button data-track="pm">PMs</button>
+    <button data-track="eng">Engineers</button>
+  </div>
+</div>
+<main>
+  <p class="eyebrow">If you only learn ten files</p>
+  <h1>File Tour</h1>
+  <p class="lede">
+    The codebase has hundreds of files but ten carry most of the meaning. Read these and you can
+    navigate the rest by analogy.
+  </p>
+
+  <h2>1. <code>src/app/layout.tsx</code> — the global wrapper</h2>
+  <p class="for-pm">
+    The outermost shell that wraps every page. Loads the two fonts. You'll rarely touch this.
+  </p>
+  <p class="for-eng">
+    The Next.js App Router root layout. Sets up <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>,
+    loads Outfit + Inter via <code>next/font/google</code>, exposes them as CSS variables on
+    <code>&lt;body&gt;</code>. Includes global metadata (title, description).
+  </p>
+
+  <h2>2. <code>src/app/page.tsx</code> — the homepage</h2>
+  <p>
+    The landing page at <code>/</code>. Lists three course tracks (NCERT Math, Engineering Math,
+    Advanced Math). Grade 11 currently links to <code>/read/grade-11/ch1</code>; others show
+    &quot;coming soon&quot;.
+  </p>
+
+  <h2>3. <code>src/app/read/grade-11/ch1/page.tsx</code> — a typical chapter</h2>
+  <p>The shape every chapter follows. Reading this one file gives you the mental template.</p>
+  <p class="for-pm">
+    Open it once and skim. You'll see: a list of chapters at the top (used for the sidebar), then
+    a big function that returns the visual layout — the navbar, the sidebar, the main content with
+    sections and widgets and the quiz. Each chapter file is roughly the same shape with different
+    prose and different widgets.
+  </p>
+  <ol class="for-eng">
+    <li><code>&quot;use client&quot;;</code> — opts in to client-side React.</li>
+    <li>Imports — layout pieces, widgets, quiz pool.</li>
+    <li><code>CHAPTERS</code> array — the sidebar entries.</li>
+    <li>Default export — returns JSX: Navbar, sticky Sidebar, <code>&lt;main&gt;</code> with sections.</li>
+    <li>Each section uses the same numbered header pattern (giant Outfit-900 number + eyebrow + h2).</li>
+  </ol>
+
+  <h2>4. <code>src/components/layout/WidgetShell.tsx</code> — the universal wrapper</h2>
+  <p>
+    A 45-line component. Rounded card with header bar and body. Props: <code>label</code>,
+    optional <code>badge</code>, children. Every widget wraps itself in this so the visual
+    treatment is consistent across the whole site.
+  </p>
+
+  <h2>5. <code>src/components/widgets/Quiz.tsx</code> — used by every chapter</h2>
+  <p>
+    Takes <code>pool</code> (typed <code>QuizQuestion[]</code>) and <code>count</code> (default 10).
+    Samples randomly, shows progress, supports hint-on-demand, marks correct/wrong, shows
+    explanation, ends with score screen.
+  </p>
+
+  <h2>6. <code>src/app/globals.css</code> — the design tokens</h2>
+  <p>
+    The single source of truth for color, font, shadow, and border variables. Tailwind utilities
+    and inline styles both read from these. To change the palette of the entire site, edit this
+    one file.
+  </p>
+
+  <h2>7. <code>src/data/grade-11-ch1-questions.ts</code> — a typical quiz pool</h2>
+  <p class="for-pm">
+    The questions for Chapter 1's quiz. To edit a question, find it in this file and change the
+    text. Each question has the prompt, four options, the index of the correct answer (0 means
+    the first option), a hint, and an explanation that shows after the user answers.
+  </p>
+  <pre class="for-eng"><code>export const GRADE_11_CH1_QUESTIONS: QuizQuestion[] = [
+  {
+    question: "Which of the following is a set?",
+    options: ["Tall people", "Vowels in English", "Good books", "Funny jokes"],
+    answer: 1,
+    hint: "A set must be well-defined.",
+    explanation: "&apos;Vowels in English&apos; is unambiguous; the others are subjective."
+  },
+  // ...
+];</code></pre>
+
+  <h2>8. <code>src/data/briefs/grade-11-ch1-brief.md</code> — a typical brief</h2>
+  <p>
+    The intermediate artefact from Stage 1 of the pipeline. Plain Markdown, strict schema. Read
+    once by Claude during chapter authoring, then committed to the repo as a record. Never read
+    at runtime by the website.
+  </p>
+
+  <h2>9. <code>.claude/skills/create-chapter/SKILL.md</code> — the workflow doc</h2>
+  <p>
+    Defines the create-chapter skill. Contains the full Stage 1 + Stage 2 workflow, a quality
+    checklist, and what NOT to do. See the <a href="chapter-pipeline.html">Chapter Pipeline</a>
+    page for the human-readable version.
+  </p>
+
+  <h2>10. <code>.claude/skills/create-chapter/scripts/make-brief.sh</code> — Stage 1 script</h2>
+  <p>
+    Bash script. Takes PDF path + slug, runs <code>pdftotext</code>, calls DeepSeek with the
+    strict prompt, saves the result. ~110 lines total, mostly preflight checks and error messages.
+    The actual API call is one curl command.
+  </p>
+
+  <h2>Honourable mentions</h2>
+  <ul>
+    <li><code>src/components/layout/Sidebar.tsx</code> — the left rail.</li>
+    <li><code>src/components/layout/CalloutCard.tsx</code> — soft-coloured box for key ideas.</li>
+    <li><code>src/components/layout/Navbar.tsx</code> — top bar.</li>
+    <li><code>CLAUDE.md</code> at the repo root — project-level instructions Claude reads at session start.</li>
+    <li><code>AGENTS.md</code> — one-liner reminding Claude that Next.js 16 has breaking changes vs older versions.</li>
+  </ul>
+
+  <div class="track-callout eng for-eng">
+    <span class="badge">For engineers</span>
+    <strong>How CLAUDE.md and AGENTS.md interact.</strong> CLAUDE.md is project-specific guidance
+    (design tokens, page template, widget pattern). AGENTS.md is a framework-version hint. Claude
+    reads both at session start; the create-chapter skill augments them with workflow-specific
+    instructions for chapter building.
+  </div>
+
+  <div class="track-callout pm for-pm">
+    <span class="badge">For PMs</span>
+    <strong>The two files you'll touch most often:</strong> <code>src/app/read/&lt;grade&gt;/&lt;chapter&gt;/page.tsx</code>
+    for editing chapter prose, and <code>src/data/&lt;slug&gt;-questions.ts</code> for editing
+    quiz questions. Everything else can usually be left alone unless you're adding a new chapter.
+  </div>
+
+  <footer>
+    <p>End of wiki · Back to <a href="index.html">Overview</a> · Switch to <a href="../variant-a-openbook/index.html">Variant A</a></p>
+  </footer>
+</main>
+<script src="wiki.js"></script>
+</body>
+</html>

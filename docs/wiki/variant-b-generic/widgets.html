@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Openbook Wiki · Widgets</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="index.html">Openbook Docs</a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="design-system.html">Design</a>
+      <a href="widgets.html">Widgets</a>
+      <a href="chapter-pipeline.html">Pipeline</a>
+      <a href="file-tour.html">Files</a>
+    </nav>
+  </div>
+</header>
+<div class="track-toggle">
+  <span class="label">View for</span>
+  <div class="buttons">
+    <button data-track="pm">PMs</button>
+    <button data-track="eng">Engineers</button>
+  </div>
+</div>
+<main>
+  <p class="eyebrow">The interactive components</p>
+  <h1>Widgets</h1>
+  <p class="lede">
+    A widget is a self-contained interactive piece — sliders, click handlers, drag, number inputs
+    — that helps a student feel an idea instead of just reading about it. Openbook has around 33
+    widgets, all following the same pattern.
+  </p>
+
+  <h2>The pattern</h2>
+  <p class="for-pm">
+    Every widget follows the same recipe: it owns its own state (whatever the user is currently
+    interacting with), wraps itself in a standard card frame (so all widgets look like siblings),
+    pulls its colours from the shared design system, and actually does something — moves, changes,
+    calculates — when the user interacts with it. No static SVG pretending to be a widget.
+  </p>
+  <div class="for-eng">
+    <p>Four rules. Violations are bugs.</p>
+    <ol>
+      <li>One React component, owns its state via <code>useState</code>.</li>
+      <li>Wraps itself in <code>&lt;WidgetShell label=&quot;...&quot; badge=&quot;...&quot;&gt;</code>.</li>
+      <li>Colors via CSS variables only. No hardcoded hex.</li>
+      <li>Genuinely interactive — visible state changes on user input.</li>
+    </ol>
+  </div>
+
+  <h2>The full catalogue</h2>
+  <p>33 widgets across the Class 8 and Class 11 chapters.</p>
+
+  <table>
+    <thead><tr><th>Widget</th><th>Chapter</th><th>What it does</th><th>Interaction</th></tr></thead>
+    <tbody>
+      <tr><td><code>LockerSimulation</code></td><td>Cl 8 · 1</td><td>Animates 100 lockers being toggled.</td><td>Animation</td></tr>
+      <tr><td><code>OddSumBuilder</code></td><td>Cl 8 · 1</td><td>Adds L-shaped odd-number rings.</td><td>Step</td></tr>
+      <tr><td><code>SquareRootEstimator</code></td><td>Cl 8 · 1</td><td>Estimates √n between known squares.</td><td>Slider</td></tr>
+      <tr><td><code>CubeBuilder</code></td><td>Cl 8 · 1</td><td>3D cube of unit cubes.</td><td>Slider</td></tr>
+      <tr><td><code>DivisibilityChecker</code></td><td>Cl 8 · 2</td><td>Type a number, see which rules pass.</td><td>Input</td></tr>
+      <tr><td><code>ModPatternVisualizer</code></td><td>Cl 8 · 2</td><td>Highlights modular patterns on a grid.</td><td>Slider</td></tr>
+      <tr><td><code>CryptarithmSolver</code></td><td>Cl 8 · 2</td><td>Walks through a letter-arithmetic puzzle.</td><td>Step</td></tr>
+      <tr><td><code>QuadFamilyExplorer</code></td><td>Cl 8 · 3</td><td>Pick quadrilateral type, see properties.</td><td>Buttons</td></tr>
+      <tr><td><code>AngleSumWidget</code></td><td>Cl 8 · 3</td><td>Drag corners, see angle sum 360°.</td><td>Drag</td></tr>
+      <tr><td><code>DraggableQuadrilateral</code></td><td>Cl 8 · 3</td><td>Drag vertices, see shape change.</td><td>Drag</td></tr>
+      <tr><td><code>TriangleJoiner</code></td><td>Cl 8 · 3</td><td>Join triangles to form quads.</td><td>Click</td></tr>
+      <tr><td><code>FoldingSimulation</code></td><td>Cl 8 · 3</td><td>Fold paper shapes step-by-step.</td><td>Step</td></tr>
+      <tr><td><code>ProportionSolver</code></td><td>Cl 8 · 4/5</td><td>Solve ratio problems.</td><td>Input</td></tr>
+      <tr><td><code>RatioEquivalenceChecker</code></td><td>Cl 8 · 4</td><td>Compare two ratios for equality.</td><td>Input</td></tr>
+      <tr><td><code>PhotoScaler</code></td><td>Cl 8 · 5</td><td>Scale an image preserving aspect.</td><td>Slider/input</td></tr>
+      <tr><td><code>ErrorSpotter</code></td><td>Cl 8 · 5</td><td>Find errors in proportional reasoning.</td><td>Click</td></tr>
+      <tr><td><code>GrowthComparison</code></td><td>Cl 8 · 6</td><td>Linear vs exponential growth.</td><td>Slider</td></tr>
+      <tr><td><code>AreaModel</code></td><td>Cl 8 · 6</td><td>Multiply with the area model.</td><td>Slider</td></tr>
+      <tr><td><code>ExponentExplorer</code></td><td>Cl 8 · 6</td><td>Vary base and exponent.</td><td>Slider</td></tr>
+      <tr><td><code>NumberSystemComparator</code></td><td>Cl 8 · 7</td><td>Decimal ↔ binary ↔ hex.</td><td>Input</td></tr>
+      <tr><td><code>BaseNExplorer</code></td><td>Cl 8 · 7</td><td>Slide the base.</td><td>Slider</td></tr>
+      <tr><td><code>RomanConverter</code></td><td>Cl 8 · 7</td><td>Roman ↔ Arabic numerals.</td><td>Input</td></tr>
+      <tr><td><code>IdentityTriple</code></td><td>Cl 8 · 7</td><td>Three views of an identity.</td><td>Slider</td></tr>
+      <tr><td><code>SetRepresenter</code></td><td>Gr 11 · 1</td><td>Roster vs builder vs Venn.</td><td>Buttons</td></tr>
+      <tr><td><code>VennDiagramExplorer</code></td><td>Gr 11 · 1</td><td>Toggle 8 set-operation regions.</td><td>Buttons</td></tr>
+      <tr><td><code>CartesianProductGrid</code></td><td>Gr 11 · 2</td><td>A × B as a grid.</td><td>Buttons</td></tr>
+      <tr><td><code>RelationFunctionChecker</code></td><td>Gr 11 · 2</td><td>Arrow diagram + verdict.</td><td>Buttons</td></tr>
+      <tr><td><code>FunctionGraphExplorer</code></td><td>Gr 11 · 2</td><td>8 named functions graphed.</td><td>Buttons</td></tr>
+      <tr><td><code>AngleConverter</code></td><td>Gr 11 · 3</td><td>Degrees ↔ radians.</td><td>Slider</td></tr>
+      <tr><td><code>UnitCircleExplorer</code></td><td>Gr 11 · 3</td><td>Drag, see all 6 trig values.</td><td>Drag</td></tr>
+      <tr><td><code>TrigGraphExplorer</code></td><td>Gr 11 · 3</td><td>Trig graphs with asymptotes.</td><td>Buttons</td></tr>
+      <tr><td><code>ComplexArithmetic</code></td><td>Gr 11 · 4</td><td>+/−/×/÷ between two complex numbers.</td><td>Input</td></tr>
+      <tr><td><code>PowersOfI</code></td><td>Gr 11 · 4</td><td>Slider through n, watch iⁿ cycle.</td><td>Slider</td></tr>
+      <tr><td><code>ArgandPlanePlot</code></td><td>Gr 11 · 4</td><td>Click to plot z, see |z|, z̄, 1/z.</td><td>Click</td></tr>
+      <tr><td><code>InequalitySolver</code></td><td>Gr 11 · 5</td><td>Step-by-step solve + number line.</td><td>Buttons</td></tr>
+      <tr><td><code>NumberLineBuilder</code></td><td>Gr 11 · 5</td><td>Op + threshold → graph.</td><td>Buttons/slider</td></tr>
+      <tr><td><code>CountingPrinciple</code></td><td>Gr 11 · 6</td><td>Multi-stage multiplication.</td><td>Buttons</td></tr>
+      <tr><td><code>FactorialCalculator</code></td><td>Gr 11 · 6</td><td>n, r → n!, nPr, nCr.</td><td>Slider</td></tr>
+      <tr><td><code>WordArranger</code></td><td>Gr 11 · 6</td><td>Type a word, distinct perms.</td><td>Input</td></tr>
+      <tr><td><code>PascalsTriangle</code></td><td>Gr 11 · 7</td><td>Click any cell for nCr.</td><td>Click</td></tr>
+      <tr><td><code>BinomialExpander</code></td><td>Gr 11 · 7</td><td>(a+b)ⁿ expansion.</td><td>Buttons</td></tr>
+      <tr><td><code>SequenceGenerator</code></td><td>Gr 11 · 8</td><td>Formula or recurrence.</td><td>Buttons</td></tr>
+      <tr><td><code>GeometricProgression</code></td><td>Gr 11 · 8</td><td>a, r, n → terms, Sₙ, S∞.</td><td>Input</td></tr>
+      <tr><td><code>SpecialSeriesCalculator</code></td><td>Gr 11 · 8</td><td>Σn, Σn², Σn³.</td><td>Buttons/slider</td></tr>
+      <tr><td><code>LineExplorer</code></td><td>Gr 11 · 9</td><td>3 line forms.</td><td>Buttons/slider</td></tr>
+      <tr><td><code>SlopeRelationship</code></td><td>Gr 11 · 9</td><td>Two slopes → verdict.</td><td>Slider</td></tr>
+      <tr><td><code>PointLineDistance</code></td><td>Gr 11 · 9</td><td>Click to move point.</td><td>Click</td></tr>
+      <tr><td><code>ConicGallery</code></td><td>Gr 11 · 10</td><td>4 conics in one widget.</td><td>Buttons/slider</td></tr>
+      <tr><td><code>CircleFromGeneralForm</code></td><td>Gr 11 · 10</td><td>Complete the square.</td><td>Buttons</td></tr>
+      <tr><td><code>OctantExplorer</code></td><td>Gr 11 · 11</td><td>(x,y,z) → octant.</td><td>Input</td></tr>
+      <tr><td><code>Distance3D</code></td><td>Gr 11 · 11</td><td>Two 3D points → distance.</td><td>Input</td></tr>
+      <tr><td><code>LimitExplorer</code></td><td>Gr 11 · 12</td><td>Left/right approach table.</td><td>Buttons</td></tr>
+      <tr><td><code>SecantToTangent</code></td><td>Gr 11 · 12</td><td>Secant → tangent as h → 0.</td><td>Slider</td></tr>
+      <tr><td><code>DerivativeRules</code></td><td>Gr 11 · 12</td><td>10 standard + 5 combo.</td><td>Buttons</td></tr>
+      <tr><td><code>DescriptiveStats</code></td><td>Gr 11 · 13</td><td>Dataset → 9 measures.</td><td>Input</td></tr>
+      <tr><td><code>VarianceCalculator</code></td><td>Gr 11 · 13</td><td>Step-by-step variance.</td><td>Buttons</td></tr>
+      <tr><td><code>EventCalculator</code></td><td>Gr 11 · 14</td><td>P(A), P(B), P(A∩B) → P(A∪B).</td><td>Slider</td></tr>
+      <tr><td><code>CardDeckProbability</code></td><td>Gr 11 · 14</td><td>Event → matching cards.</td><td>Buttons</td></tr>
+      <tr><td><code>Quiz</code></td><td>every chapter</td><td>10-question random quiz.</td><td>Click</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Three case studies</h2>
+
+  <h3>VennDiagramExplorer — toggling SVG regions</h3>
+  <p>
+    Chapter 1 (Sets). Two overlapping circles in inline SVG. Each of the four regions (A only, B
+    only, intersection, neither) is its own SVG path. When the user picks an operation, the
+    component flips opacity/fill on each region. No external library — just React state controlling
+    SVG attributes.
+  </p>
+
+  <h3>ConicGallery — parametric curves with four modes</h3>
+  <p>
+    Chapter 10. One widget handles all four conics by generating sample points from a parametric
+    formula and stitching them into an SVG path. Foci and directrix are computed from a, b, c and
+    drawn as separate markers. About 220 lines for all four conics together.
+  </p>
+
+  <h3>LimitExplorer — the numeric-table approach</h3>
+  <p>
+    Chapter 12. Instead of a visualization, this widget uses a table — four decreasing values of h,
+    showing f(a − h) and f(a + h) side by side. When the two columns converge, the limit exists.
+    When they don't, it doesn't. Sometimes a table tells a story better than a chart.
+  </p>
+
+  <h2>When to add a new widget vs reuse</h2>
+  <div class="note green">
+    <strong>Reuse if:</strong> the existing widget does the same thing with different parameters,
+    or you'd duplicate &gt;50% of an existing widget's code.
+  </div>
+  <div class="note yellow">
+    <strong>Build new if:</strong> the concept needs a fundamentally different interaction
+    (drag vs slider vs click), you'd bend an existing widget out of shape, or the new chapter has
+    a unique visual metaphor.
+  </div>
+
+  <div class="track-callout eng for-eng">
+    <span class="badge">For engineers</span>
+    <strong>The component-defined-inside-parent bug.</strong> Defining a sub-component inside a
+    parent's render creates a new function reference per render, which React unmounts and remounts
+    — losing input focus mid-typing. Always hoist helpers to module scope. We hit this once in
+    <code>RatioEquivalenceChecker</code> and learned the hard way.
+  </div>
+
+  <div class="track-callout pm for-pm">
+    <span class="badge">For PMs</span>
+    The <code>Quiz</code> widget is special — it appears in every chapter. To edit quiz questions
+    for a chapter, open <code>src/data/&lt;slug&gt;-questions.ts</code>. It's a list of question
+    objects with text, four options, the correct answer index, a hint, and an explanation.
+  </div>
+
+  <footer>
+    <p>Next: <a href="chapter-pipeline.html">Chapter Pipeline</a> →</p>
+  </footer>
+</main>
+<script src="wiki.js"></script>
+</body>
+</html>
