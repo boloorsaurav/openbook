@@ -9,11 +9,11 @@ step, no server needed.
 
 ## What's here
 
-A side-nav docs site with a **For PMs / For engineers** toggle in the sidebar. Flip between the
-two tracks to read the same topic at different technical depths. Your choice persists across
-pages via `localStorage`.
+A **single-page docs site** with side navigation. Sidebar clicks jump to anchored sections
+within the same page (no reload). A **For PMs / For engineers** toggle in the sidebar flips
+between two depth levels of writing; your choice persists across visits via `localStorage`.
 
-## Pages
+## Sections
 
 1. **Overview** — what Openbook is, the tech stack at a glance, the top-level repo map.
 2. **Architecture** — the three-layer model (layout / widgets / pages), request flow, data flow.
@@ -23,15 +23,28 @@ pages via `localStorage`.
    2-stage DeepSeek → Claude pipeline.
 6. **File Tour** — annotated walkthrough of the ten files that matter most.
 
-## Adding a new page
+## Adding a new section
 
-1. Create `docs/wiki/new-page.html`. Copy the structure of an existing page (`architecture.html`
-   is a good template).
-2. Add one `<li><a href="new-page.html">New Page</a></li>` to the sidebar `<nav>` in **every**
-   existing HTML file so the new page shows up in the nav from all of them.
-3. That's it. No build step, no config file, no rebuilds.
+Everything lives in `index.html`. Two steps:
+
+1. Append a new `<section id="my-new-section">…</section>` block to the `<main>` element.
+2. Add one `<li><a href="#my-new-section">Link Label</a></li>` to the sidebar `<nav>` list at
+   the top of the same file.
+
+That's it. The scroll-spy in `wiki.js` will highlight the link as the user scrolls into the
+section, and clicking the link will smooth-scroll there.
+
+## Files
+
+```
+docs/wiki/
+├── README.md       (this file)
+├── index.html      everything — one big scrollable doc
+├── styles.css      look and feel
+└── wiki.js         scroll-spy + PM/Eng toggle
+```
 
 ## What's NOT in the wiki yet
 
 Deploy / GitHub / Vercel workflow. That's a separate addition for later — happy to add it as a
-7th page when you want.
+7th section when you want.
