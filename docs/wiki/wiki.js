@@ -1,8 +1,8 @@
-// Variant B — top-nav highlight + PM/eng track toggle.
+// Openbook Wiki — sidebar nav highlight + PM/eng track toggle.
 (function () {
-  // Highlight active top-nav link
+  // Highlight active sidebar nav link
   const path = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".topnav nav a").forEach((a) => {
+  document.querySelectorAll(".sidebar nav a").forEach((a) => {
     const href = a.getAttribute("href");
     if (href === path) a.classList.add("active");
   });
