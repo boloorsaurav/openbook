@@ -24,6 +24,10 @@
 
 * { box-sizing: border-box; }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -33,6 +37,16 @@ html, body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Section anchors — leave breathing room above when jumped to */
+main section[id] {
+  scroll-margin-top: 24px;
+}
+main section[id] + section[id] {
+  margin-top: 72px;
+  padding-top: 56px;
+  border-top: 1px solid var(--border-soft);
 }
 
 a {
